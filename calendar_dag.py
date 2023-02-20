@@ -33,7 +33,7 @@ def load(data):
         index=False,        
     )
     
-def etl(year, **context):
+def etl(**context):
     year = context['execution_date'].year
     load(transform(extract(year)))
 
