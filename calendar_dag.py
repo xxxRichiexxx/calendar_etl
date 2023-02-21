@@ -75,7 +75,11 @@ with DAG(
 
     with TaskGroup('Формирование_слоя_DDS') as data_to_dds:
 
-        pass
+        dds_business_days_calendar = VerticaOperator(
+            task_id='update_dds_business_days_calendar',
+            vertica_conn_id='vertica',
+            sql='dds_business_days_calendar.sql',
+        )
 
     end = DummyOperator(task_id='Конец')
 

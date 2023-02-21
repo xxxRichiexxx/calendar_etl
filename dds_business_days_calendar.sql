@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS sttgaz.dds_business_days_calendar;
+CREATE TABLE sttgaz.dds_business_days_calendar AS
 WITH 
 	sq1 AS(
 		SELECT "Год/Месяц", 'Январь' AS "Месяц (название)", 1 AS "Месяц (номер)", "Январь" AS "День" 
@@ -85,4 +87,4 @@ SELECT
 	END "Примечание"
 FROM sq4
 LEFT JOIN sq3
-	USING("Дата")
+	USING("Дата");
