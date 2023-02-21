@@ -24,7 +24,13 @@ def extract(year):
 def transform(data):
     return data
 
-def load(data):
+def load(data, year):
+    dwh_engine.execute(
+        f"""
+        DELETE FROM sttgaz.stage_calendar
+        WHERE "Год/Месяц" = {year}
+        """
+    )
     data.to_sql(
         f'stage_calendar',
         dwh_engine,
@@ -35,8 +41,7 @@ def load(data):
     
 def etl(**context):
     year = context['execution_date'].year
-    load(transform(extract(year)))
-
+    load(transform(extract(year)), year)
 
 
 #-------------- DAG -----------------
