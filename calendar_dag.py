@@ -57,7 +57,7 @@ with DAG(
         default_args=default_args,
         description='Получение данных производственного календаря.',
         start_date=days_ago(90),
-        schedule_interval='@monthly',
+        schedule_interval='@daily',
         catchup=True,
         max_active_runs=1
 ) as dag:
